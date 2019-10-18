@@ -3,4 +3,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="color">
+        <item>CYAN</item>
+        <item>BLUE</item>
+        <item>RED</item>
+        <item>BLACK</item>
+        <item>GRAY</item>
+        <item>GREEN</item>
+        <item>MAGENTA</item>
+        <item>WHITE</item>
+        <item>YELLOW</item>
+        <item>PURPLE</item>
+    </string-array>
 </resources>

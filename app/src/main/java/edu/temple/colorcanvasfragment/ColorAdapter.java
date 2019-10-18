@@ -40,7 +40,7 @@ public class ColorAdapter extends BaseAdapter {
         } else {
             view = new TextView(c);
         }
-
+        view.setTextSize(40);
         view.setText(color[position]);
 
         return view;

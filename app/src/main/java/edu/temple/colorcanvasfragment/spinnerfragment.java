@@ -32,14 +32,11 @@ public class spinnerfragment extends Fragment {
     private static final String ARG_PARAM1 = "color_array";
 
     private String[] color;
-    private ListView listView;
-
-    private OnFragmentInteractionListener mListener;
 
     public spinnerfragment() {
         // Required empty public constructor
     }
-
+    public SelectedColorInterface fragmentParent;
 
     public static spinnerfragment newInstance(String[] color) {
         spinnerfragment fragment = new spinnerfragment();
@@ -57,44 +54,35 @@ public class spinnerfragment extends Fragment {
         } else {
             throw new NullPointerException();
         }
-
-        ColorAdapter colorAdapter = new ColorAdapter(getActivity(), color.length, color);
-        ListView colorlist = (ListView)getView().findViewById(R.id.colorlistview);
-        colorlist.setAdapter(colorAdapter);
-
-        colorlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String color_name = ((TextView)view).getText().toString();
-                ((SelectedColor)parent).selectedcolor(color_name);
-            }
-        });
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_spinnerfragment, container, false);
+        View v = inflater.inflate(R.layout.fragment_spinnerfragment, container, false);
+
+        ColorAdapter colorAdapter = new ColorAdapter(getActivity(), color.length, color);
+        ListView colorlist = v.findViewById(R.id.colorlistview);
+        colorlist.setAdapter(colorAdapter);
+
+        colorlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String color_name = ((TextView)view).getText().toString();
+                fragmentParent.selectedcolor(color_name);
+            }
+        });
+        return v;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+        if (context instanceof SelectedColorInterface) {
+            fragmentParent = (SelectedColorInterface) context;
+        }
     }
 
     /**
@@ -107,7 +95,7 @@ public class spinnerfragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface SelectedColor {
+    public interface SelectedColorInterface {
         // TODO: Update argument type and name
         void selectedcolor(String color_name);
     }

@@ -36,7 +36,7 @@ public class spinnerfragment extends Fragment {
     public spinnerfragment() {
         // Required empty public constructor
     }
-    public SelectedColorInterface fragmentParent;
+    private SelectedColorInterface fragmentParent;
 
     public static spinnerfragment newInstance(String[] color) {
         spinnerfragment fragment = new spinnerfragment();

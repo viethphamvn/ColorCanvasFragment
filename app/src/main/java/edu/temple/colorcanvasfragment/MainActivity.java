@@ -6,20 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity implements spinnerfragment.SelectedColorInterface {
-
-    FragmentManager fm;
-    final static String Color_Array = "color_array";
-    final static String Color_Name = "color_name";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        spinnerfragment sf = new spinnerfragment();
-        Bundle bundle = new Bundle();
-        bundle.putStringArray(Color_Array, getResources().getStringArray(R.array.color));
-
-        sf.setArguments(bundle);
+        spinnerfragment sf = spinnerfragment.newInstance(getResources().getStringArray(R.array.color));
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -30,11 +22,7 @@ public class MainActivity extends AppCompatActivity implements spinnerfragment.S
 
     @Override
     public void selectedcolor(String color_name) {
-        canvasfragment cf = new canvasfragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(Color_Name, color_name);
-
-        cf.setArguments(bundle);
+        canvasfragment cf = canvasfragment.newInstance(color_name);
 
         getSupportFragmentManager()
                 .beginTransaction()

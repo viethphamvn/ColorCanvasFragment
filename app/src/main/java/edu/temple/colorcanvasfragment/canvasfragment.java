@@ -52,7 +52,11 @@ public class canvasfragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         LinearLayout v = (LinearLayout)inflater.inflate(R.layout.fragment_canvasfragment, container, false);
-        v.setBackgroundColor(Color.parseColor(mParam1));
+        try {
+            v.setBackgroundColor(Color.parseColor(mParam1));
+        } catch (Exception e){
+            v.setBackgroundColor(Color.WHITE);
+        }
         return v;
 }
 

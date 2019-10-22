@@ -1,8 +1,6 @@
 package edu.temple.colorcanvasfragment;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,23 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
-import java.util.List;
-
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link spinnerfragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link spinnerfragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class spinnerfragment extends Fragment {
     private static final String ARG_PARAM1 = "color_array";
 
@@ -63,16 +48,22 @@ public class spinnerfragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_spinnerfragment, container, false);
 
         ColorAdapter colorAdapter = new ColorAdapter(getActivity(), color.length, color);
-        ListView colorlist = v.findViewById(R.id.colorlistview);
-        colorlist.setAdapter(colorAdapter);
+        Spinner spinner = v.findViewById(R.id.colorspinner);
+        spinner.setAdapter(colorAdapter);
 
-        colorlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String color_name = ((TextView)view).getText().toString();
                 fragmentParent.selectedcolor(color_name);
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
+
         return v;
     }
 

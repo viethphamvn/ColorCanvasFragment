@@ -1,6 +1,8 @@
 package edu.temple.colorcanvasfragment;
 
 import android.content.Context;
+import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -32,6 +34,7 @@ public class ColorAdapter extends BaseAdapter {
         return 0;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView view;
@@ -42,7 +45,25 @@ public class ColorAdapter extends BaseAdapter {
         }
         view.setTextSize(40);
         view.setText(color[position]);
-
         return view;
+    }
+
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        TextView textView;
+
+        if (convertView instanceof View){
+            textView = (TextView) convertView;
+        } else {
+            textView = new TextView(c);
+        }
+        textView.setBackgroundColor(Color.WHITE);
+        textView.setTextSize(40);
+        textView.setText(color[position]);
+        try {
+            textView.setBackgroundColor(Color.parseColor(textView.getText().toString()));
+        } catch(Exception e){}
+        return textView;
     }
 }

@@ -15,18 +15,21 @@ import android.widget.TextView;
 
 public class spinnerfragment extends Fragment {
     private static final String ARG_PARAM1 = "color_array";
+    private static final String ARG_PARAM2 = "color_display_array";
 
     private String[] color;
+    private String[] color_display;
 
     public spinnerfragment() {
         // Required empty public constructor
     }
     private SelectedColorInterface fragmentParent;
 
-    public static spinnerfragment newInstance(String[] color) {
+    public static spinnerfragment newInstance(String[] color, String[] color_display) {
         spinnerfragment fragment = new spinnerfragment();
         Bundle args = new Bundle();
         args.putStringArray(ARG_PARAM1, color);
+        args.putStringArray(ARG_PARAM2, color_display);
         fragment.setArguments(args);
         return fragment;
     }
@@ -36,6 +39,7 @@ public class spinnerfragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             color = getArguments().getStringArray(ARG_PARAM1);
+            color_display = getArguments().getStringArray(ARG_PARAM2);
         } else {
             throw new NullPointerException();
         }
@@ -47,14 +51,14 @@ public class spinnerfragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_spinnerfragment, container, false);
 
-        ColorAdapter colorAdapter = new ColorAdapter(getActivity(), color.length, color);
+        ColorAdapter colorAdapter = new ColorAdapter(getActivity(), color.length, color, color_display);
         Spinner spinner = v.findViewById(R.id.colorspinner);
         spinner.setAdapter(colorAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String color_name = ((TextView)view).getText().toString();
+                String color_name = color[position];
                 fragmentParent.selectedcolor(color_name);
             }
 

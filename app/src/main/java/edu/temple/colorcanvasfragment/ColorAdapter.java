@@ -11,12 +11,13 @@ import android.widget.TextView;
 public class ColorAdapter extends BaseAdapter {
     Context c;
     int count;
-    String[] color;
+    String[] color, color_display;
 
-    public ColorAdapter(Context c, int count, String[] color){
+    public ColorAdapter(Context c, int count, String[] color, String[] color_display){
         this.c = c;
         this.count = count;
         this.color = color;
+        this.color_display = color_display;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ColorAdapter extends BaseAdapter {
             view = new TextView(c);
         }
         view.setTextSize(40);
-        view.setText(color[position]);
+        view.setText(color_display[position]);
         return view;
     }
 
@@ -60,9 +61,9 @@ public class ColorAdapter extends BaseAdapter {
         }
         textView.setBackgroundColor(Color.WHITE);
         textView.setTextSize(40);
-        textView.setText(color[position]);
+        textView.setText(color_display[position]);
         try {
-            textView.setBackgroundColor(Color.parseColor(textView.getText().toString()));
+            textView.setBackgroundColor(Color.parseColor(color[position]));
         } catch(Exception e){}
         return textView;
     }

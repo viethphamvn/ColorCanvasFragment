@@ -3,20 +3,20 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="color">
-        <item>Select a color</item>
-        <item>CYAN</item>
-        <item>BLUE</item>
-        <item>RED</item>
-        <item>BLACK</item>
-        <item>GRAY</item>
-        <item>GREEN</item>
-        <item>MAGENTA</item>
-        <item>WHITE</item>
-        <item>YELLOW</item>
-        <item>PURPLE</item>
-    </string-array>
     <string-array name="color_display">
+        <item>Chọn một màu</item>
+        <item>Lục lam</item>
+        <item>Xanh dương</item>
+        <item>Đỏ</item>
+        <item>Đen</item>
+        <item>Xám</item>
+        <item>Xanh lục</item>
+        <item>Đỏ tươi</item>
+        <item>Trắng</item>
+        <item>Vàng</item>
+        <item>Tím</item>
+    </string-array>
+    <string-array name="color">
         <item>Select a color</item>
         <item>CYAN</item>
         <item>BLUE</item>

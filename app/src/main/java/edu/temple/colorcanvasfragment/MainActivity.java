@@ -11,11 +11,11 @@ public class MainActivity extends AppCompatActivity implements spinnerfragment.S
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        spinnerfragment sf = spinnerfragment.newInstance(getResources().getStringArray(R.array.color));
+        spinnerfragment sf = spinnerfragment.newInstance(getResources().getStringArray(R.array.color), getResources().getStringArray(R.array.color_display));
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.spinner_fragment_placeholder, sf)
+                .replace(R.id.spinner_fragment_placeholder, sf)
                 .commit();
 
     }

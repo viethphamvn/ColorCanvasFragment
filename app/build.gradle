@@ -7,8 +7,8 @@ android {
         applicationId "edu.temple.colorcanvasfragment"
         minSdkVersion 27
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1-vietnamese"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
